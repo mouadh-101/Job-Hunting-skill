@@ -1,0 +1,48 @@
+# =====================================================================
+# Privacy & Security: Prevent committing personal candidate data
+# =====================================================================
+# Real candidate profile (protects user's phone, email, address, etc.)
+my_profile/candidate_profile.md
+my_profile/old_cv/*
+!my_profile/old_cv/.gitkeep
+
+# Personal job applications & employer letters
+applications/*
+!applications/.gitkeep
+!applications/applications_tracker.md
+
+# Generated PDFs in applications
+applications/**/*.pdf
+
+# =====================================================================
+# LaTeX Build & Auxiliary Files
+# =====================================================================
+*.aux
+*.log
+*.out
+*.toc
+*.fls
+*.fdb_latexmk
+*.synctex.gz
+*.bbl
+*.blg
+
+# =====================================================================
+# Python & Environment
+# =====================================================================
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# =====================================================================
+# OS & Editor Files
+# =====================================================================
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/

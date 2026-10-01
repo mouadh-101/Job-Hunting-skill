@@ -1,0 +1,18 @@
+---
+description: Automated job application tailor and career engineering rules
+globs: applications/**/*, templates/**/*, my_profile/**/*
+---
+
+# Job Tailor Rules for Cursor
+
+- **Profile Ground Truth:** Treat `my_profile/candidate_profile.md` as immutable reality. Zero fabrication of skills or tools.
+- **Workflow:**
+  1. Onboard profile if not present (from `my_profile/old_cv/` or prompt).
+  2. Research the company via web search.
+  3. Create dedicated folder in `applications/<Company> - <Role>/`.
+  4. Generate `job_offer.md` with 30-Second Recruiter Phone Screen Cheat Sheet and raw posting.
+  5. Generate tailored 1-page ATS CV (`CV_<Candidate>.tex`) from `templates/cv_template_*.tex`.
+  6. Generate matching 1-page Cover Letter (`Cover_Letter_<Candidate>.tex`) from `templates/cover_letter_template_*.tex`.
+  7. Compile with `python tools/compile_latex.py <file.tex>` and verify 1-page limit.
+  8. If LaTeX is not installed, run `python tools/setup_latex.py --auto-install` or point to Overleaf.com.
+  9. Draft 3 outreach email variants and update `applications/applications_tracker.md`.

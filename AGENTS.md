@@ -1,0 +1,54 @@
+# AGENTS.md — Universal Agent Instructions for Job-Hunting-skill
+
+This file defines the project instructions, architectural boundaries, and operational workflows for autonomous AI coding agents (GitHub Copilot, Codex, Windsurf, Cursor, Claude Code, Antigravity, OpenHands, Cline).
+
+---
+
+## 1. Project Overview & Philosophy
+**Job-Hunting-skill** is an open-source, multi-agent career engineering platform. It transforms raw candidate experience into high-conversion, ATS-optimized, 1-page LaTeX CVs, matching cover letters, company intelligence dossiers, and multi-channel outreach pitches for any target role.
+
+### The Immutable Ground Truth Rule
+- `my_profile/candidate_profile.md` is the **sole source of truth**.
+- Agents must **NEVER** hallucinate or claim unverified skills or tools.
+- Tailoring is the strategic selection and prioritization of authentic candidate evidence.
+
+---
+
+## 2. Onboarding Workflow
+If `my_profile/candidate_profile.md` is missing:
+1. Look for existing resume files in `my_profile/old_cv/`.
+2. Extract text using `python tools/extract_profile.py` or native file reading.
+3. Structure the extracted details into `my_profile/candidate_profile.md` following `my_profile/candidate_profile.example.md`.
+4. Ensure experience bullets are converted into the **Action-Scale-Outcome (ASO)** format:
+   $$\text{Bullet} = \textbf{[Active Verb]} + \textbf{[Scope/Tech Context]} + \textbf{[Quantified Business Outcome]}$$
+
+---
+
+## 3. Job Application Pipeline
+When presented with a job description or URL:
+
+1. **Company Web Intelligence:**
+   - Search the web for company details: core business, products, stack/domain, engineering culture, and key leadership.
+2. **Directory Setup:**
+   - Create `applications/<Company_Name> - <Role_Title>/`.
+3. **`job_offer.md` Generation:**
+   - Compile the **30-Second Recruiter Phone Screen Cheat Sheet** (key pitch points, company overview, target salary script).
+   - Preserve raw job posting verbatim.
+4. **1-Page ATS CV Generation:**
+   - Use `templates/cv_template_en.tex` (or `_fr.tex`).
+   - Output to `applications/<Company> - <Role>/CV_<Firstname>_<Lastname>.tex`.
+   - Ensure strictly 1 page.
+5. **1-Page Cover Letter Generation:**
+   - Use `templates/cover_letter_template_en.tex` (or `_fr.tex`).
+   - Use the **Vous / Moi / Nous** structure.
+   - Output to `applications/<Company> - <Role>/Cover_Letter_<Firstname>_<Lastname>.tex`.
+6. **PDF Compilation & Single-Page Verification:**
+   - Run `python tools/compile_latex.py "<path_to_tex>"`.
+   - If LaTeX is missing, execute `python tools/setup_latex.py --auto-install`.
+   - If local installation is restricted by the platform, inform the user they can paste the `.tex` into [Overleaf.com](https://www.overleaf.com/).
+7. **Outreach Email Generation:**
+   - Variant A: Formal HR / application email.
+   - Variant B: Direct pitch to Hiring Manager / Founder / CTO.
+   - Variant C: LinkedIn InMail / connection note (< 300 chars).
+8. **Tracker Update:**
+   - Log entry in `applications/applications_tracker.md`.

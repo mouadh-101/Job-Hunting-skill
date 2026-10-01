@@ -1,0 +1,9 @@
+# Windsurf Cascade Rules for Job-Hunting-skill
+
+- Single source of truth: `my_profile/candidate_profile.md`. Never hallucinate unverified skills.
+- Check if `candidate_profile.md` exists. If not, parse files in `my_profile/old_cv/` or prompt the user.
+- Always use the Action-Scale-Outcome (ASO) formula for experience bullets.
+- Tailored CV and Cover Letter must strictly fit on 1 page each.
+- File names must never include company names (e.g. `CV_<Name>.pdf`, `Cover_Letter_<Name>.pdf`).
+- Verify LaTeX compiler availability. Use `python tools/compile_latex.py` to build PDFs. If missing, run `python tools/setup_latex.py` or inform the user about Overleaf.com.
+- Generate `job_offer.md` with 30-Second Recruiter Phone Screen Cheat Sheet and draft outreach emails.
